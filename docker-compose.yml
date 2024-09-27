@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Replace with a strong password
+      MYSQL_DATABASE: db            # Optional: name of the database to create
+      MYSQL_USER: root                    # Optional: create a non-root user
+      MYSQL_PASSWORD: root            # Optional: password for the non-root user
+    ports:
+      - "3306:3306"                            # Exposing MySQL port
+    volumes:
+      - mysql_data:/var/lib/mysql              # Persistent storage for MySQL data
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql_db                       # The service name of MySQL (defined above)
+      MYSQL_ROOT_PASSWORD: root  # Match the MySQL root password
+    ports:
+      - "8080:80"                              # Exposing phpMyAdmin on port 8080
+
+volumes:
+  mysql_data:
+
