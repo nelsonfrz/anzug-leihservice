@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <html lang="de">
 <head>
     <title>W3.CSS Template</title>
